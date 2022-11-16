@@ -50,4 +50,15 @@ public class MoneyTransferTest {
         assertEquals(balanceFirstCard + Integer.parseInt(amount), dashboardPage.getFirstCardBalance());
         assertEquals(balanceSecondCard - Integer.parseInt(amount), dashboardPage.getSecondCardBalance());
     }
+    @Test
+    public void shouldTransferAboveCardBalance() {
+        val dashboardPage = new DashboardPage();
+        val transferPage = dashboardPage.secondCardButton();
+        val infoCard = DataHelper.getFirstCardInfo();
+        String amount = "25000";
+        transferPage.transferCard(infoCard, amount);
+        transferPage.getError();
+    }
+
+
 }
